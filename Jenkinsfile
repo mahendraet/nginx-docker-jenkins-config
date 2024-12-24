@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker images...'
-                sh 'export SHOPIFY_API_KEY=e96df3a6c83cbbb4eda6d65b6e338df3 && docker-compose build'
+                sh "export SHOPIFY_API_KEY=e96df3a6c83cbbb4eda6d65b6e338df3 && docker-compose build ${APP_NAME}-${BUILD_VERSION}"
             }
         }
 
