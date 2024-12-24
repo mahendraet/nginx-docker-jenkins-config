@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         APP_NAME = "app"
-        BUILD_VERSION = "v${BUILD_NUMBER}"
+        BUILD_VERSION = "v1"
     }
 
     stages {
@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker images...'
-                sh "export SHOPIFY_API_KEY=e96df3a6c83cbbb4eda6d65b6e338df3 && docker-compose build ${APP_NAME}-${BUILD_VERSION}"
+                sh 'SHOPIFY_API_KEY=e96df3a6c83cbbb4eda6d65b6e338df3 && docker-compose build'
             }
         }
 
@@ -25,7 +25,7 @@ pipeline {
             steps {
                 echo 'Deploying Blue-Green...'
                 script {
-                    sh "export SHOPIFY_API_KEY=e96df3a6c83cbbb4eda6d65b6e338df3 && docker-compose up -d ${APP_NAME}-${BUILD_VERSION}"
+                    sh "SHOPIFY_API_KEY=e96df3a6c83cbbb4eda6d65b6e338df3 && docker-compose up -d ${APP_NAME}-${BUILD_VERSION}"
                 }
             }
         }
