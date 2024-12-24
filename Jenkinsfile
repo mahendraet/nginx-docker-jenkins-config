@@ -33,7 +33,7 @@ pipeline {
         stage('Switch Traffic') {
             steps {
                 echo 'Switching traffic...'
-                sh "sed -i 's/app_servers_v1/app_servers_${APP_VERSION}/' nginx.conf"
+                sh "sed -i 's/app_servers_v1/app_servers_${BUILD_VERSION}/' nginx.conf"
                 sh 'docker-compose restart nginx'
             }
         }
