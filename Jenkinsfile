@@ -41,10 +41,10 @@ pipeline {
         stage('Cleanup') {
             steps {
                 echo 'Cleaning up old containers...'
-                script {
-                    echo "Cleaning up old containers..."
-                    sh "docker-compose down --remove-orphans"
-                }
+                // script {
+                //     echo "Cleaning up old containers..."
+                //     sh "docker-compose down --remove-orphans"
+                // }
             }
         }
     }
