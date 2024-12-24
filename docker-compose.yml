@@ -3,10 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        SHOPIFY_API_KEY: ${SHOPIFY_API_KEY}
-    environment:
-      SHOPIFY_API_KEY: ${SHOPIFY_API_KEY}
     depends_on:
       - postgres
     networks:
@@ -18,10 +14,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        SHOPIFY_API_KEY: ${SHOPIFY_API_KEY}
-    environment:
-      SHOPIFY_API_KEY: ${SHOPIFY_API_KEY}
     depends_on:
       - postgres
     networks:
@@ -30,6 +22,7 @@ services:
       replicas: 2
 
   nginx:
+    container_name: nginx
     image: nginx:alpine
     ports:
       - "8081:80"
@@ -52,6 +45,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
     networks:
       - app_network
+
   redis:
     container_name: redis
     image: redis:alpine
