@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SECRET = credentials('some-key')
+        SHOPIFY_API_KEY = credentials('SHOPIFY_API_KEY')
     }
 
     stages {
@@ -14,9 +14,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                def singlyQuoted = SECRET
-                echo "some-key: ${singlyQuoted}"
-                sh 'docker-compose up -d --build'
+                sh "export SHOPIFY_API_KEY=$SHOPIFY_API_KEY && docker-compose up -d --build"
             }
         }
 
