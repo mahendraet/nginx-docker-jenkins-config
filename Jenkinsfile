@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "export SHOPIFY_API_KEY=$SHOPIFY_API_KEY && docker-compose up -d --build"
+                sh "export SHOPIFY_API_KEY=abc && docker-compose up -d --build"
             }
         }
 
