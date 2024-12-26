@@ -18,7 +18,7 @@ pipeline {
 
         stage('Switch Traffic') {
             steps {
-                sh 'docker-compose restart nginx'
+                sh 'docker restart nginx'
             }
         }
 
