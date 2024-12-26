@@ -16,15 +16,9 @@ pipeline {
             }
         }
 
-        stage('Switch Traffic') {
+        stage('Restart Nginx') {
             steps {
                 sh 'docker restart nginx'
-            }
-        }
-
-        stage('Cleanup') {
-            steps {
-                echo 'Cleaning up old containers...'
             }
         }
     }
