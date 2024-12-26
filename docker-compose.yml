@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - $ENV_FILE
     depends_on:
       - postgres
     networks:

@@ -12,8 +12,8 @@ pipeline {
             steps {
                 withCredentials([file(credentialsId: 'env', variable: 'SECRET_FILE')]) {
                     sh '''
-                    echo "Using secret file located at $SECRET_FILE"
-                    docker-compose up -d --env-file $SECRET_FILE --build
+                    export ENV_FILE=$SECRET_FILE
+                    docker-compose up -d --build
                     '''
                 }
             }
