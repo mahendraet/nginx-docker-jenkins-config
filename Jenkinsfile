@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SHOPIFY_API_KEY = credentials('SHOPIFY_API_KEY')
+        ENV = credentials('env')
     }
 
     stages {
@@ -14,7 +14,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "export SHOPIFY_API_KEY=abc && docker-compose up -d --build"
+                sh "export $($ENV | xargs)"
+                sh "docker-compose up -d --build"
             }
         }
 
