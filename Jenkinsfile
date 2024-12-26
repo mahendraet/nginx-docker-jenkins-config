@@ -14,7 +14,10 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh "docker-compose up -d --env-file $ENV --build"
+                sh '''
+                    echo "$ENV" | xargs export
+                    docker-compose up -d --build
+                '''
             }
         }
 
