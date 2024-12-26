@@ -15,6 +15,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "some-key: ${SECRET}"
+                echo "${env}"
                 sh 'docker-compose up -d --build'
             }
         }
