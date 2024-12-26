@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        ENV = credentials('env')
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -12,10 +8,20 @@ pipeline {
             }
         }
 
+        stage('Env') {
+            steps {
+                withCredentials([file(credentialsId: 'env', variable: 'SECRET_FILE')]) {
+                    sh '''
+                    echo "Using secret file located at $SECRET_FILE"
+                    cat $SECRET_FILE
+                    '''
+                }
+            }
+        }
+
         stage('Build') {
             steps {
                 sh '''
-                    echo "$ENV" | xargs export
                     docker-compose up -d --build
                 '''
             }
