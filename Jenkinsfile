@@ -14,8 +14,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "some-key: ${SECRET}"
-                echo "${env}"
+                def singlyQuoted = SECRET
+                echo "some-key: ${singlyQuoted}"
                 sh 'docker-compose up -d --build'
             }
         }
