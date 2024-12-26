@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        SECRET = credentials('secret')
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,6 +14,7 @@ pipeline {
 
         stage('Build') {
             steps {
+                echo "${SECRET}"
                 sh 'docker-compose up -d --build'
             }
         }
