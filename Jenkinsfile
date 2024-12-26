@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SECRET = credentials('secret')
+        SECRET = credentials('some-key')
     }
 
     stages {
@@ -14,7 +14,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "${SECRET}"
+                echo "some-key: ${SECRET}"
                 sh 'docker-compose up -d --build'
             }
         }
