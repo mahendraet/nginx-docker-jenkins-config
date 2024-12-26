@@ -8,22 +8,14 @@ pipeline {
             }
         }
 
-        stage('Env') {
+        stage('Build') {
             steps {
                 withCredentials([file(credentialsId: 'env', variable: 'SECRET_FILE')]) {
                     sh '''
                     echo "Using secret file located at $SECRET_FILE"
-                    xargs export $(cat $SECRET_FILE)
+                    docker-compose up -d --env-file $SECRET_FILE --build
                     '''
                 }
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh '''
-                    docker-compose up -d --build
-                '''
             }
         }
 
