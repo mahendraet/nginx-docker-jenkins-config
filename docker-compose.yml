@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        - ENV_FILE=$ENV_FILE
+        ENV_FILE: ${ENV_FILE}
     env_file:
       - $ENV_FILE
     depends_on:
