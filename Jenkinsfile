@@ -13,7 +13,7 @@ pipeline {
                 withCredentials([file(credentialsId: 'env', variable: 'SECRET_FILE')]) {
                     sh '''
                     echo "Using secret file located at $SECRET_FILE"
-                    cat $SECRET_FILE
+                    cat $SECRET_FILE | xargs export
                     '''
                 }
             }
